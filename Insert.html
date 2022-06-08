@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <style>
+        .container{
+            padding: 25px;
+            background-color: #4ca7ad;
+            margin-left: 700px;
+            margin-right: 700px;
+            font-size: 18px;
+            margin-top: 200px;
+        }
+        input[type=text],[type=date] {
+            width: 100%;
+            margin: 8px 0;
+            padding: 12px 20px;
+            display: inline-block;
+            border: 2px solid green;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #dddbdb;
+            width: 100%;
+            color: #030303;
+            padding: 15px;
+            margin: 10px 0px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<form>
+<div class="container">
+    <label>Plate NO.: </label>
+    <input type="text" placeholder="Plate No." required>
+    <label>Date: </label>
+    <input type="date" required>
+    <label>Service Type: </label>
+    <input type="text" placeholder="Service Type" required>
+    <label>Engine Type: </label>
+    <input type="text" placeholder="Engine Type" required>
+    <label>Test Pass: </label>
+    <input type="text" placeholder="Test Pass" required>
+    <button type="submit">Insert</button>
+    <button type="submit">Search</button>
+    <button type="submit">Update</button>
+</div>
+</form>
+</body>
+
+</html>
