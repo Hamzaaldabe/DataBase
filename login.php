@@ -1,3 +1,52 @@
+<?php
+session_start();
+
+include "connect.php";
+
+if (isset($_SESSION['Username'])) {
+    header('Location: Insert.php'); // Redirect To Insert Page
+}
+
+// Check If User Coming From HTTP Post Request
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $hashedPass = md5($password);
+    echo $username;
+
+    // Check If The User Exist In Database
+
+    $stmt = $con->prepare("SELECT 
+									*
+								FROM 
+									users 
+								WHERE 
+									username = ? 
+								AND 
+									password = ? 
+								LIMIT 1");
+
+    $stmt->execute(array($username, $hashedPass));
+    $row = $stmt->fetch();
+    $count = $stmt->rowCount();
+
+    // If Count > 0 This Mean The Database Contain Record About This Username
+
+    if ($count > 0) {
+        echo "Connected successfully";
+
+        $_SESSION['Username'] = $username; // Register Session Name
+        $_SESSION['ID'] = $row['UserID']; // Register Session ID
+        header('Location: Insert.php'); // Redirect To Dashboard Page
+        exit();
+    }
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html" lang="en">
 <head>
@@ -17,17 +66,17 @@
                     <p class="h3" style="text-align: center">09-2692444</p>
                 </div>
                 <div class="col-xl-12 col-md-12 col-lg-12">
-                    <form class="bg-white rounded shadow-5-strong p-5">
+                    <form class="bg-white rounded shadow-5-strong p-5" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
                         <!-- Email input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="form1Example1">Username</label>
-                            <input type="email" id="form1Example1" class="form-control"/>
+                            <input type="text" id="form1Example1" name="username" class="form-control"/>
                         </div>
 
                         <!-- Password input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="form1Example2">Password</label>
-                            <input type="password" id="form1Example2" class="form-control"/>
+                            <input type="password" id="form1Example2" name="password" class="form-control"/>
                         </div>
 
                         <!-- 2 column grid layout for inline styling -->
