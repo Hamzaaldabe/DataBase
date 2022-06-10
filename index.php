@@ -47,16 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 ?>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html" lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Login Page </title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-</head>
-<body>
-
+<?php include "sections/header.php"?>
 <div class="container main-container">
     <div class="row justify-content-center">
         <div class="card" style="width: 40rem;">
@@ -107,8 +98,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
     </div>
-</div>
-<script src="js/bootstrap.js"></script>
-<script src="js/bootstrap.bundle.js"></script>
-</body>
-</html>
+<?php include "sections/footer.php"?>
