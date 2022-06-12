@@ -63,9 +63,6 @@ if (!isset($_SESSION['Username'])) {
                                 <button type="submit" class="btn btn-primary btn-block">Update</button>
                             </div>
                             <br>
-                            <div class="d-grid gap-1 col-6 mx-auto">
-                                <button type="submit" class="btn btn-primary btn-block">Search</button>
-                            </div>
                         </form>
                     </div>
                 </div>
