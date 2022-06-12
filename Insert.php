@@ -27,7 +27,7 @@ if (!isset($_SESSION['Username'])) {
                             <!-- Password input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form1Example2">date</label>
-                                <input type="date" id="form1Example2" class="form-control" name="date" required />
+                                <input type="date" id="form1Example12" class="form-control" name="date" required />
                             </div>
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form1Example4">Service Type</label>

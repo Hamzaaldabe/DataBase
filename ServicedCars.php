@@ -4,13 +4,21 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $date = $_POST['date'];
+    $start_date = $_POST['startDate'];
+    $end_date = $_POST['EndDate'];
 
-    $stmt = $con->prepare("select * from car where registeration_date= ? ");
+    $stmt = $con->prepare("select plate_number,service_date 
+from service_car 
+join service on service.serviceID = service_car.serviceID 
+where service.service_type = 1 
+and service_date 
+between ? and ?
+
+");
 
 // Execute The Statement
 
-    $stmt->execute(array($date));
+    $stmt->execute(array($start_date,$end_date));
 
 // Assign To Variable
 
@@ -23,8 +31,13 @@ echo '
 <form class="form-inline" method="POST" action="' . $_SERVER['PHP_SELF'] . '">
 
 <div class="form-group mb-2" >
-<label class="form-label" for="form1Example2">date</label>
-<input type="date" id="form1Example12" class="form-control" name="date" required />
+<label class="form-label" for="form1Example1">Start Date</label>
+<input type="date" id="form1Example1" class="form-control" name="startDate" required />
+</div>
+
+<div class="form-group mb-2" >
+<label class="form-label" for="form2Example2">End Date</label>
+<input type="date" id="form2Example2" class="form-control" name="EndDate" required />
 </div>
 
 <button type="submit" class="btn btn-primary btn-block mb-2">Search</button>
@@ -35,9 +48,8 @@ echo '
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">plateNO.</th>
-      <th scope="col">Engine Type</th>
-      <th scope="col">Production Year</th>
+      <th scope="col">PlateNO.</th>
+      <th scope="col">Service Date</th>
     </tr>
   </thead>
   <tbody>
@@ -56,8 +68,11 @@ if (empty($rows)) {
     <tr>
       <th scope="row">'.$row_count.'</th>
       <td>' . $row['plate_number'] . '</td>
-      <td>' . $row['engine_type'] . '</td>
-      <td>' . $row['production_year'] . '</td>
+      <td>' . $row['service_date'] . '</td>
+    </tr>
+        <tr>
+      <th></th>
+      <td></td>
     </tr>
     ';
     }

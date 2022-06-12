@@ -5,8 +5,7 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $date = $_POST['date'];
-
-    $stmt = $con->prepare("select * from car where registeration_date= ? ");
+    $stmt = $con->prepare("select plate_number  from car where production_year <= ? ");
 
 // Execute The Statement
 
@@ -24,7 +23,7 @@ echo '
 
 <div class="form-group mb-2" >
 <label class="form-label" for="form1Example2">date</label>
-<input type="date" id="form1Example12" class="form-control" name="date" required />
+<input type="date" id="form1Example3" class="form-control" name="date" required />
 </div>
 
 <button type="submit" class="btn btn-primary btn-block mb-2">Search</button>
@@ -36,8 +35,6 @@ echo '
     <tr>
       <th scope="col">#</th>
       <th scope="col">plateNO.</th>
-      <th scope="col">Engine Type</th>
-      <th scope="col">Production Year</th>
     </tr>
   </thead>
   <tbody>
@@ -56,8 +53,8 @@ if (empty($rows)) {
     <tr>
       <th scope="row">'.$row_count.'</th>
       <td>' . $row['plate_number'] . '</td>
-      <td>' . $row['engine_type'] . '</td>
-      <td>' . $row['production_year'] . '</td>
+      <td></td>
+      <td></td>
     </tr>
     ';
     }
