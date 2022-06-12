@@ -2,17 +2,12 @@
 <?php include "connect.php" ?>
 <?php include "navbar.php";
 session_start();
-if (!isset($_SESSION['Username'])) {
-    header('Location:index.php');
-}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $plateNo = $_POST['PlateNo'];
-
-    $stmt = $con->prepare("select service_car.test_pass,service_car.service_date 
-from service, service_car, car
-where service_car.plate_number = ? 
-and service_car.plate_number = car.plate_number 
-and service.serviceID = service_car.serviceID;");
+    $stmt = $con->prepare("select *
+from car
+where plate_number = ? ;");
 
 // Execute The Statement
 
@@ -41,9 +36,14 @@ echo '
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Test Pass</th>
-      <th scope="col">Service Date </th>
-     
+      <th scope="col">Plate Number</th>
+      <th scope="col">Owner </th>
+      <th scope="col">Engine Type</th>
+      <th scope="col">Engine Number</th>
+      <th scope="col">Color</th>
+      <th scope="col">Production Year</th>
+      <th scope="col">VIN Number</th>
+      <th scope="col">Regestered Date</th>
     </tr>
   </thead>
   <tbody>
@@ -60,21 +60,19 @@ if (empty($rows)) {
     $row_count = 0;
     foreach ($rows as $row) {
 
-        if ($row['test_pass'] == 1) {
-            $test_pass = "Passed";
-        }
-        if ($row['test_pass'] == 2) {
-            $test_pass = "Not Yet";
-        } else {
-            $test_pass = "Failed";
 
-        }
         $row_count++;
         echo '
     <tr>
       <th scope="row">' . $row_count . '</th>
-      <td>' . $test_pass . '</td>
-      <td>' . $row['service_date'] . '</td>
+      <td>'  .$row['plate_number'].'</td>
+      <td>' . $row['owner'] . '</td>
+      <td>'  .$row['engine_type'].'</td>
+      <td>' . $row['engine_number'] . '</td>
+      <td>'  .$row['color'].'</td>
+      <td>' . $row['production_year'] . '</td>
+      <td>'  .$row['VIN_number'].'</td>
+      <td>' . $row['registeration_date'] . '</td>
     </tr>
     ';
     }

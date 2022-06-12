@@ -16,13 +16,16 @@
                 <a class="nav-link" href="TotalIncome.php">Total Income</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="oldCars.php">Old Cars</a>
+                <a class="nav-link" href="OldCars.php">Old Cars</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="servicedCars.php">Serviced Cars</a>
+                <a class="nav-link" href="ServicedCars.php">Serviced Cars</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="CarTests.php">Car Tests</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="CarInfo.php">Car Info</a>
             </li>
         </ul>
 

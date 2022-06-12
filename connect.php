@@ -1,6 +1,6 @@
 <?php
 
-	$dsn = 'mysql:host=localhost;dbname=dynometer';
+	$dsn = 'mysql:host=localhost;dbname=Dynometer';
 	$user = 'root';
 	$pass = '';
 	$option = array(

@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['Username'])) {
-    header('Location:index.php'); // Redirect To Insert Page
+    header('Location:index.php');
 }
 
 ?>

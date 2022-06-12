@@ -4,7 +4,9 @@ include "connect.php";
 session_start();
 
 include "functions.php";
-
+if (!isset($_SESSION['Username'])) {
+    header('Location:index.php');
+}
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $platNo = $_POST['platNo'];

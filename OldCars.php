@@ -2,7 +2,9 @@
 <?php include "connect.php" ?>
 <?php include "navbar.php";
 session_start();
-
+if (!isset($_SESSION['Username'])) {
+    header('Location:index.php');
+}
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $date = $_POST['date'];
     $stmt = $con->prepare("select plate_number  from car where production_year <= ? ");
